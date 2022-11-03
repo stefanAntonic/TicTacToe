@@ -29,16 +29,41 @@ namespace TicTacToe
                 if (Player == 2)
                 {
                     Player = 1;
-                    EnterXorOVAlue(Player, Input);
+
+                    EnterXorOValue(Player, Input);
                 }
-                   
+
                 else if (Player == 1)
                 {
                     Player = 2;
-                    EnterXorOVAlue(Player, Input);
+                    EnterXorOValue(Player, Input);
                 }
+                    
                 SetField();
-
+                char[] playingChars = { 'X', 'O' };
+                foreach (char playerChar in playingChars)
+                {
+                    if (((PlayField[0, 0] == playerChar) && (PlayField[0, 1] == playerChar) && (PlayField[0, 2] == playerChar))
+                        || ((PlayField[1, 0] == playerChar) && (PlayField[1, 1] == playerChar) && (PlayField[1, 2] == playerChar))
+                        || ((PlayField[2, 0] == playerChar) && (PlayField[2, 1] == playerChar) && (PlayField[2, 2] == playerChar))
+                        || ((PlayField[0, 0] == playerChar) && (PlayField[1, 1] == playerChar) && (PlayField[2, 2] == playerChar))
+                        || ((PlayField[0, 1] == playerChar) && (PlayField[1, 1] == playerChar) && (PlayField[2, 1] == playerChar))
+                        || ((PlayField[0, 2] == playerChar) && (PlayField[1, 1] == playerChar) && (PlayField[2, 0] == playerChar))
+                        || ((PlayField[1, 0] == playerChar) && (PlayField[1, 1] == playerChar) && (PlayField[1, 2] == playerChar))
+                       )
+                    {
+                        if (playerChar == 'X')
+                        {
+                            Console.WriteLine("\n Player 2 has won!");
+                
+                        } 
+                        else if (playerChar == 'O')
+                        {
+                            Console.WriteLine("\n Player 1 has won!");
+                        }
+                    }
+                }
+                
                 do
                 {
                     Console.WriteLine($"Player {Player}: Chose your filed!");
@@ -51,7 +76,41 @@ namespace TicTacToe
                         Console.WriteLine("Enter valid field number;");
 
                     }
-                    
+
+                    if ((Input == 1) && (PlayField[0, 0] == '1'))
+                        InputCorrect = true;
+                    else if ((Input == 2) && (PlayField[0, 1] == '2'))
+                    {
+                        InputCorrect = true;
+                    }   else if ((Input == 3) && (PlayField[0, 2] == '3'))
+                    {
+                        InputCorrect = true;
+                    }   else if ((Input == 4) && (PlayField[1, 0] == '4'))
+                    {
+                        InputCorrect = true;
+                    }   else if ((Input == 5) && (PlayField[0, 1] == '5'))
+                    {
+                        InputCorrect = true;
+                    }   else if ((Input == 6) && (PlayField[0, 2] == '6'))
+                    {
+                        InputCorrect = true;
+                    }   else if ((Input == 7) && (PlayField[1, 0] == '7'))
+                    {
+                        InputCorrect = true;
+                    }   else if ((Input == 8) && (PlayField[1, 1] == '8'))
+                    {
+                        InputCorrect = true;
+                    }   else if ((Input == 9) && (PlayField[1, 2] == '9'))
+                    {
+                        InputCorrect = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Insert correct input.");
+                        InputCorrect = false;
+                        Console.Clear();
+                    }
+
 
                 } while (!InputCorrect);
                  
@@ -59,7 +118,7 @@ namespace TicTacToe
             while (true) ;
         }
 
-        public void EnterXorOVAlue(int player, int input)
+        public void EnterXorOValue(int player, int input)
         {
             char xorOValue = player == 1 ? 'X' : 'O';
             
